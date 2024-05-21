@@ -1,18 +1,17 @@
-package com.phonebook.dto;
+package com.wishlist.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
 @Setter
 @Getter
 @ToString
 @Builder
 
-public class AuthRequestDto {
-    private  String username;
-    private String password;
+public class AllWishlistDto {
+    private List<WishlistDto> contacts;
 
 }
-

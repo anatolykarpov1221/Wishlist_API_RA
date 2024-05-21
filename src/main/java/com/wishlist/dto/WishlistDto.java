@@ -1,4 +1,4 @@
-package com.phonebook.dto;
+package com.wishlist.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 @Builder
 
-public class ContactDto {
+public class WishlistDto {
     private String id;
     private String name;
     private String lastName;

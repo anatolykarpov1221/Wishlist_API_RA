@@ -1,4 +1,4 @@
-package com.phonebook.dto;
+package com.wishlist.dto;
 
 import lombok.Builder;
 import lombok.Getter;

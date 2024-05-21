@@ -1,4 +1,4 @@
-package com.phonebook.dto;
+package com.wishlist.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -10,5 +10,6 @@ import lombok.ToString;
 @ToString
 @Builder
 public class AuthResponseDto {
-    private String token;
-}
+    private String accessToken;
+};
+
