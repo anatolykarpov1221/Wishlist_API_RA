@@ -6,8 +6,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 public class TestBase {
-    //public static final String accessTOKEN="eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoic3R1ZGVudDE3QHdlYi5jb20iLCJpc3MiOiJSZWd1bGFpdCIsImV4cCI6MTcxNjIwNDA2MiwiaWF0IjoxNzE1NjA0MDYyfQ.mpKTz1dADlb8H6B5glMfd3k8Fq6i9JDM1aaXIo_kKT0";
-    //public static final String AUTH ="Authorization";
+    public static final String TOKEN ="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdWRraW5hQHdlYi5kZSIsImV4cCI6MTcxNjk4MTAzNCwicm9sZXMiOlt7ImlkIjoyLCJ0aXRsZSI6IlJPTEVfVVNFUiIsImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XSwibmFtZSI6IkxlbmEgRHVka2luYSJ9.ORu2YmPnhfVKpQVRJhazYQAk1T0qal_NNLToJMiKngU";
+    public static final String AUTH ="Authorization";
     //private Object Parser;
 
     @BeforeMethod

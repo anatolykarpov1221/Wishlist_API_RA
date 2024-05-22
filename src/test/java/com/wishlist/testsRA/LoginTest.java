@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
 public class LoginTest extends TestBase {
-    //RestAssured.registerParser("text/plain", Parser.JSON); // JSON для типа контента 'text/plain'
+
     AuthRequestDto auth = AuthRequestDto.builder()
             .email("dudkina@web.de")
             .password("Berlin2024!")
@@ -73,36 +73,35 @@ public class LoginTest extends TestBase {
     }
 
 
-//    @Test
-//    public void loginWithWrongEmail1(){
-//
-//            given().body(AuthRequestDto.builder()
-//                            .email("dudkinaweb.de")
-//                            .password("Berlin2024!")
-//                            .build())
-//                    .contentType(ContentType.JSON)
-//                    .when()
-//                    .post("/users/login")
-//                    .then()
-//                    .assertThat().statusCode(400)
-//                    //.contentType(ContentType.TEXT)
-//                    .assertThat().body("message",equalTo("Login or Password incorrect"));
-
-
-
-//    }
     @Test
-    public void loginWithWrongEmail2(){
+    public void loginWithWrongEmail1(){
+
+            given().body(AuthRequestDto.builder()
+                            .email("dudkina@web")
+                            .password("Berlin2024!")
+                            .build())
+                    .contentType(ContentType.JSON)
+                    .when()
+                    .post("/users/login")
+                    .then()
+                    .assertThat().statusCode(401)
+                    .assertThat().body("message",equalTo("Invalid e-mail or password"));
+
+
+
+   }
+    @Test
+    public void loginWithWrongLogin(){
         given().body(AuthRequestDto.builder()
-                        .email("dudkinaweb.de")
-                        .password("Berlin2024!")
+                        .email("dudkina@web.de")
+                        .password("Berlin2024")
                         .build())
                 .contentType(ContentType.JSON)
                 .when()
                 .post("/users/login")
                 .then()
-                .assertThat().statusCode(400)
-                .contentType(ContentType.TEXT)
-                .body("message", equalTo("Invalid e-mail or password"));
+                .assertThat().statusCode(401)
+                .contentType(ContentType.JSON)
+                .assertThat().body("message", equalTo("Invalid e-mail or password"));
     }
 }

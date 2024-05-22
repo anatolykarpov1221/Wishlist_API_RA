@@ -12,10 +12,11 @@ import lombok.ToString;
 
 public class WishlistDto {
     private String id;
-    private String name;
-    private String lastName;
-    private String email;
-    private String phone;
-    private String address;
+    private String title;
+    private String eventDate;
     private String description;
 }
+//id	integer($int64)
+//title	string
+//description	string
+//eventDate	string($date-time)
