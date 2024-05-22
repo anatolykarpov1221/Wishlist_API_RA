@@ -37,7 +37,7 @@ public class EditWishlistTests extends TestBase {
 
    }
     @Test
-    public void editContactSuccessTest() {    given()
+    public void editWishlistSuccessTest() {    given()
             .header(AUTH, "Bearer " + TOKEN)
             .contentType(ContentType.JSON)
             .body("{\"title\": \"UpdatedTitle\", \"eventDate\": \"2025-05-05\", \"description\": \"UpdatedDescription\"}")
@@ -51,11 +51,12 @@ public class EditWishlistTests extends TestBase {
         System.out.println("Wishlist with ID " + id + " has been successfully updated.");}
 
     @Test
-    public void editContactNegativeTest() {
+    public void editWishlistNegativeTest() {
         Response response = given()
                 .header(AUTH, "Bearer " + TOKEN)
                 .contentType(ContentType.JSON)
-                .body("{\"title\": \"UpdatedTitle\", \"eventDate\": \"2025-05-05\", \"description\": \"UpdatedDescription\"}") // Предоставление корректных данных для обновления
+                //некорректные данные
+                .body("{\"title\": \"UpdatedTitle\", \"eventDate\": \"2025-05-05\", \"description\": \"UpdatedDescription\"}")
                 .when()
                 .put("wishlists/" + id);
 

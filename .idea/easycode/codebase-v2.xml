@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/src/main/java/com/wishlist/dto/AllWishlistsDto.java;/Users/anatolykarpovMAC15/GitHub/WishlistAPI/src/main/java/com/wishlist/dto/AuthRequestDto.java;/Users/anatolykarpovMAC15/GitHub/WishlistAPI/src/main/java/com/wishlist/dto/AuthResponseDto.java;/Users/anatolykarpovMAC15/GitHub/WishlistAPI/src/main/java/com/wishlist/dto/UserDto.java;/Users/anatolykarpovMAC15/GitHub/WishlistAPI/src/main/java/com/wishlist/dto/WishlistDto.java;/Users/anatolykarpovMAC15/GitHub/WishlistAPI/src/test/java/com/wishlist/testsRA/DeleteWishlistByIdTests.java;/Users/anatolykarpovMAC15/GitHub/WishlistAPI/src/test/java/com/wishlist/testsRA/EditWishlistTests.java;/Users/anatolykarpovMAC15/GitHub/WishlistAPI/src/test/java/com/wishlist/testsRA/GetWishlistTests.java;/Users/anatolykarpovMAC15/GitHub/WishlistAPI/src/test/java/com/wishlist/testsRA/LoginTest.java;/Users/anatolykarpovMAC15/GitHub/WishlistAPI/src/test/java/com/wishlist/testsRA/TestBase.java;/Users/anatolykarpovMAC15/GitHub/WishlistAPI/src/test/java/com/wishlist/testsRA/UserControllerTest.java" />
+  </component>
+</project>

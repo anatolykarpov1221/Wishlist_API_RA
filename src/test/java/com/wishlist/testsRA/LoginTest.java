@@ -2,15 +2,11 @@ package com.wishlist.testsRA;
 
 import com.wishlist.dto.AuthRequestDto;
 import com.wishlist.dto.AuthResponseDto;
-import com.wishlist.dto.ErrorDto;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -33,9 +29,21 @@ public class LoginTest extends TestBase {
                 .extract().response().as(AuthResponseDto.class);
         System.out.println(dto.getAccessToken());
     }
+    @Test
+    public void logoutTest() {
+        given()
+                .header(AUTH, "Bearer " + TOKEN)
+                .when()
+                .post("/users/logout")
+                .then()
+                .assertThat().statusCode(200);
+
+        System.out.println("User successfully logged out.");
+    }
 
 
-        @Test
+
+    @Test
     public void loginSuccesTest2(){
                 String responseToken=given()
                         .contentType(ContentType.JSON)

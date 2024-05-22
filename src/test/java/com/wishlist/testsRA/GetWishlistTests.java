@@ -1,30 +1,23 @@
 package com.wishlist.testsRA;
 
-import com.wishlist.dto.AllWishlistsDto;
 import com.wishlist.dto.WishlistDto;
 import io.restassured.http.ContentType;
-import io.restassured.mapper.ObjectMapper;
-import io.restassured.mapper.ObjectMapperDeserializationContext;
-import io.restassured.mapper.ObjectMapperSerializationContext;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
-import static groovyjarjarantlr4.v4.tool.AttributeDict.DictType.TOKEN;
 import static io.restassured.RestAssured.given;
 
-public class GetAllWishlistTests extends TestBase {
+public class GetWishlistTests extends TestBase {
 
     @Test
-    public void getAllWishlistsSuccessTest1() {
+    public void getWishlistsSuccessTestId1() {
         Response response = given()
                 .header(AUTH, "Bearer " + TOKEN) // Добавить заголовок Authorization с токеном
                 .contentType(ContentType.JSON)
                 .when()
-                .get("wishlists/2");
+                .get("wishlists/1");
 
         if (response.statusCode() == 200) {
             WishlistDto wishlistsDto = response.as(WishlistDto.class);
@@ -37,7 +30,7 @@ public class GetAllWishlistTests extends TestBase {
     }
 
     @Test
-    public void getAllWishlistsSuccessTest2() {
+    public void getWishlistsSuccessTestId2() {
         Response response = given()
                 .header(AUTH, "Bearer " + TOKEN)
                 .contentType(ContentType.JSON)
