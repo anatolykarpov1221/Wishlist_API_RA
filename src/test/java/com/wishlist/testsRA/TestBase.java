@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 
 public class TestBase {
     //RestAssured.defaultParser(Parser.JSON);
-    public static final String TOKEN ="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkdWRraW5hQHdlYi5kZSIsImV4cCI6MTcxNjk4MTAzNCwicm9sZXMiOlt7ImlkIjoyLCJ0aXRsZSI6IlJPTEVfVVNFUiIsImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XSwibmFtZSI6IkxlbmEgRHVka2luYSJ9.ORu2YmPnhfVKpQVRJhazYQAk1T0qal_NNLToJMiKngU";
+    public static final String TOKEN ="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyaW5nb0B3ZWIuY29tIiwiZXhwIjoxNzE3MDczODMyLCJyb2xlcyI6W3siaWQiOjIsInRpdGxlIjoiUk9MRV9VU0VSIiwiYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dLCJuYW1lIjoiUmluZ28gU3RhcnIifQ.rw5vUNpok2iT3aJC45VI-d8FN4mgYwKsKxt1Z_Vm-PY";
     public static final String AUTH ="Authorization";
     //private Object Parser;
 

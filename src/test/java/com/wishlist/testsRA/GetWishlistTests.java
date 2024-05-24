@@ -14,7 +14,7 @@ public class GetWishlistTests extends TestBase {
     @Test
     public void getWishlistsSuccessTestId1() {
         Response response = given()
-                .header(AUTH, "Bearer " + TOKEN) // Добавить заголовок Authorization с токеном
+                .header(AUTH, "Bearer " + TOKEN)
                 .contentType(ContentType.JSON)
                 .when()
                 .get("wishlists/1");
@@ -35,7 +35,7 @@ public class GetWishlistTests extends TestBase {
                 .header(AUTH, "Bearer " + TOKEN)
                 .contentType(ContentType.JSON)
                 .when()
-                .get("wishlists/1");
+                .get("wishlists/2");
 
         int statusCode = response.statusCode();
         System.out.println("Status Code: " + statusCode);

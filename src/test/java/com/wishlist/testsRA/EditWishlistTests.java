@@ -37,18 +37,21 @@ public class EditWishlistTests extends TestBase {
 
    }
     @Test
-    public void editWishlistSuccessTest() {    given()
-            .header(AUTH, "Bearer " + TOKEN)
-            .contentType(ContentType.JSON)
-            .body("{\"title\": \"UpdatedTitle\", \"eventDate\": \"2025-05-05\", \"description\": \"UpdatedDescription\"}")
-            .when()
-            .put("wishlists/" + id)
-            .then()
-            .assertThat().statusCode(200)
-            //.assertThat().body(equalTo("Wishlist deleted successfully"))
-            .assertThat().body(equalTo("Wishlist updated successfully"))
-            .log().all();
-        System.out.println("Wishlist with ID " + id + " has been successfully updated.");}
+    public void editWishlistSuccessTest() {
+        given()
+                .header(AUTH, "Bearer " + TOKEN)
+                .contentType(ContentType.JSON)
+                .body("{\"title\": \"UpdatedTitle\", \"eventDate\": \"2025-05-05\", \"description\": \"UpdatedDescription\"}")
+                .when()
+                .put("wishlists/" + id)
+                .then()
+                .assertThat().statusCode(200)
+                .assertThat().body("title", equalTo("UpdatedTitle"))
+                .assertThat().body("description", equalTo("UpdatedDescription"))
+                .assertThat().body("eventDate", equalTo("2025-05-05T00:00:00.000+00:00"))
+                .log().all();
+        System.out.println("Wishlist with ID " + id + " has been successfully updated.");
+    }
 
     @Test
     public void editWishlistNegativeTest() {

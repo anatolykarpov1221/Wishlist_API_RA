@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class LoginTest extends TestBase {
 
     AuthRequestDto auth = AuthRequestDto.builder()
-            .email("dudkina@web.de")
+            .email("ringo@web.com")
             .password("Berlin2024!")
             .build();
 
