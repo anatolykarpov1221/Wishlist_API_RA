@@ -31,7 +31,6 @@ public class EditWishlistTests extends TestBase {
                     .assertThat().statusCode(201)
                     .extract().path("id").toString();
             System.out.println("ID: " +id);
-
             this.id = id;
 
 
@@ -58,7 +57,7 @@ public class EditWishlistTests extends TestBase {
         Response response = given()
                 .header(AUTH, "Bearer " + TOKEN)
                 .contentType(ContentType.JSON)
-                //некорректные данные
+               //mistake
                 .body("{\"title\": \"UpdatedTitle\", \"eventDate\": \"2025-05-05\", \"description\": \"UpdatedDescription\"}")
                 .when()
                 .put("wishlists/" + id);
@@ -66,13 +65,11 @@ public class EditWishlistTests extends TestBase {
         int statusCode = response.getStatusCode();
 
         if (statusCode == 400) {
-            // Ожидаемый статус код для успешного негативного теста
             System.out.println("Wishlist with ID " + id + " was not successfully updated due to invalid data provided. Status code: " + statusCode);
         } else {
-            // Фактический статус код не соответствует ожиданиям
+            // Факт
             System.out.println("Error: Unexpected status code. Expected 400, but got: " + statusCode);
         }
-
         response.then().log().all();
     }
 

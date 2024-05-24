@@ -10,17 +10,18 @@ import lombok.ToString;
     @Builder
 
     public class GiftDto {
-        private int id;
+        private Integer id;
         private String title;
         private String description;
         private String eventDate;
-        private int price;
+        private Integer price;
         private String currency;
         private String url;
         private String imgUrl;
-        private int wishlistID;
-        private boolean reserved;
+        private WishlistDto wishlist; // Изменён тип поля на объект WishlistDto
+        private Boolean reserved;
     }
+
 ////   id	integer($int64)
 //    title	string
 //    description	string

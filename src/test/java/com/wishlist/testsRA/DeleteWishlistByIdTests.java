@@ -42,7 +42,7 @@ public class DeleteWishlistByIdTests extends TestBase {
 
     @Test
     public void deleteWishlistByIdSuccessTest1() {
-        RestAssured.registerParser("text/plain", Parser.JSON); // Register a custom parser
+        RestAssured.registerParser("text/plain", Parser.JSON);
         given()
                 .header(AUTH, "Bearer " + TOKEN)
                 .delete("wishlists/" + id)
