@@ -8,11 +8,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static javax.print.attribute.standard.MediaSizeName.A;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class DeleteWishlistByIdTests extends TestBase {
+public class WishlistDeleteByIdTests extends TestBase {
 
     String id;
 

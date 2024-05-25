@@ -13,12 +13,11 @@ import lombok.ToString;
         private Integer id;
         private String title;
         private String description;
-        private String eventDate;
-        private Integer price;
+        private Number price;
         private String currency;
         private String url;
         private String imgUrl;
-        private WishlistDto wishlist; // Изменён тип поля на объект WishlistDto
+        private WishlistDto wishlist; //  тип поля на объект WishlistDto
         private Boolean reserved;
     }
 

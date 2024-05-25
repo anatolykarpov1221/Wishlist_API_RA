@@ -6,21 +6,23 @@ import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.LocalDateTime;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class GiftController extends TestBase {
+public class GiftControllerTests extends TestBase {
 
 
     String id;
 
-    @BeforeMethod(enabled = false)
+    @BeforeMethod(enabled = true)
     public void precondition() {
 
         WishlistDto wishlistDto = WishlistDto.builder()
-                .title("WishliistGift")
-                .eventDate("2025-05-05")
+                .title("WishliistGiftJonnyWalkerRed")
+                .eventDate("2025-06-01")
                 .description("NewWishlist")
                 .build();
         String id = given()
@@ -42,7 +44,7 @@ public class GiftController extends TestBase {
 
         WishlistDto wishlist = WishlistDto.builder()
                 .title("WishliistGift")
-                .eventDate("2025-05-05")
+                .eventDate("2025-06-01")
                 .description("NewWishlist")
                 .build();
 
@@ -53,7 +55,6 @@ public class GiftController extends TestBase {
         GiftDto giftDto = GiftDto.builder()
                 .title("Boss")
                 .description("parfum")
-                .eventDate("2025-05-05")
                 .price(50)
                 .currency("USD")
                 .url("www.douglas.com")
@@ -85,7 +86,7 @@ public class GiftController extends TestBase {
     }
     @Test
     public void getAllGiftsByWishlistIdTest() {
-        String wishlistId = "27";    //id;
+        String wishlistId = "7";    //id;
 
         given()
                 .header(AUTH, "Bearer " + TOKEN)
@@ -138,7 +139,6 @@ public class GiftController extends TestBase {
         GiftDto giftDto = GiftDto.builder()
                 .title(giftTitle)
                 .description("New Gift")
-                .eventDate("2025-06-01")
                 .price(50)
                 .currency("USD")
                 .url("www.example.com")
@@ -180,7 +180,6 @@ public class GiftController extends TestBase {
         GiftDto updatedGiftDto = GiftDto.builder()
                 .title("Updated Parfum 200ml")
                 .description("Updated description")
-                .eventDate("2025-06-01")
                 .price(75)
                 .currency("USD")
                 .url("https://www.updatedgift.com")
@@ -206,7 +205,6 @@ public class GiftController extends TestBase {
         GiftDto updatedGiftDto = GiftDto.builder()
                 .title("Updated Gift")
                 .description("Updated description")
-                .eventDate("2025-06-01")
                 .price(75)
                 .currency("USD")
                 .url("www.updatedgift.com")

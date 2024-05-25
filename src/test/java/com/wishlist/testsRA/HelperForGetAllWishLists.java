@@ -6,7 +6,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class Helper extends TestBase {
+public class HelperForGetAllWishLists extends TestBase {
 
     static void getAllWishLists() {
         List<WishlistDto> wishlists = given()

@@ -6,10 +6,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static java.lang.Math.log;
 import static org.hamcrest.Matchers.equalTo;
 
-public class EditWishlistTests extends TestBase {
+public class WishlistCreateEditTests extends TestBase {
 
     String id;
 
@@ -32,10 +31,37 @@ public class EditWishlistTests extends TestBase {
                     .extract().path("id").toString();
             System.out.println("ID: " +id);
             this.id = id;
-
-
    }
-    @Test
+
+
+
+        @Test
+        public void createWishlistTest() {
+            WishlistDto wishlistDto = WishlistDto.builder()
+                    .title("New Wishlist")
+                    .eventDate("2025-05-05")
+                    .description("New Description")
+                    .build();
+
+            String id = given()
+                    .header(AUTH, "Bearer " + TOKEN)
+                    .body(wishlistDto)
+                    .contentType(ContentType.JSON)
+                    .post("wishlists")
+                    .then()
+                    .log().all()
+                    .assertThat().statusCode(201)
+                    .extract().path("id").toString();
+
+            System.out.println("New Wishlist has been created with ID: " + id);
+        }
+
+
+
+
+
+
+    @Test(dependsOnMethods = "createWishlistTest")
     public void editWishlistSuccessTest() {
         given()
                 .header(AUTH, "Bearer " + TOKEN)

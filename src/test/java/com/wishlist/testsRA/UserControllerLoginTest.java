@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
-public class LoginTest extends TestBase {
+public class UserControllerLoginTest extends TestBase {
 
     AuthRequestDto auth = AuthRequestDto.builder()
             .email("ringo@web.com")
@@ -99,7 +99,7 @@ public class LoginTest extends TestBase {
 
    }
     @Test
-    public void loginWithWrongLogin(){
+    public void loginWithWrongPassword(){
         given().body(AuthRequestDto.builder()
                         .email("dudkina@web.de")
                         .password("Berlin2024")

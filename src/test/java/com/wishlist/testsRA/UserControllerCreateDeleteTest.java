@@ -1,23 +1,20 @@
 package com.wishlist.testsRA;
 import com.wishlist.dto.AuthRequestDto;
-import com.wishlist.dto.AuthResponseDto;
 import com.wishlist.dto.UserDto;
-import com.wishlist.dto.WishlistDto;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.parsing.Parser;
 import org.testng.annotations.Test;
 import io.restassured.response.Response;
 import java.util.List;
-import static ch.qos.logback.classic.spi.CallerData.extract;
+import java.util.Random;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class UserControllerTest extends TestBase {
+public class UserControllerCreateDeleteTest extends TestBase {
 
     @Test
-    public void deleteUserTest1() {
-        // Аутентификация и получение токена
+    public void updateUserTest() {
+
         AuthRequestDto auth = AuthRequestDto.builder()
                 .email("ringo@web.com")
                 .password("Berlin2024!")
@@ -32,17 +29,28 @@ public class UserControllerTest extends TestBase {
                 .extract()
                 .path("accessToken");
 
+        // Тело запроса PUT
+        UserDto updatedUser = UserDto.builder()
+                .firstName("Paul")
+                .lastName("McCar")
+                .email("ringo@web.com")
+                .password("Berlin2024!!")
+                .build();
+
         Response response = given()
                 .header(AUTH, "Bearer " + token)
+                .contentType(ContentType.JSON)
+                .body(updatedUser)
                 .when()
-                .delete("/users/auth/me")
+                .put("/users/auth/me")
                 .then()
                 .log().all()
-                .assertThat().statusCode(204)
+                .assertThat().statusCode(200)
                 .extract()
                 .response();
+
         String responseBody = response.getBody().asString();
-        System.out.println("answerBody:");
+        System.out.println("Response Body:");
         System.out.println(responseBody);
     }
 
@@ -50,14 +58,17 @@ public class UserControllerTest extends TestBase {
 
 
 
+
+
     @Test
     public void createNewUserPositiveTest() {
-        // Создаем объект пользователя с реальными данными
+        Random random = new Random();
+        int randomNumber = random.nextInt(1000);
+
         UserDto user = UserDto.builder()
                 .firstName("Ringo")
                 .lastName("Starr")
-                .email("Rringo@web.com")
-                .password("Berlin2024!")
+                .email("ringo" + randomNumber + "@web.com")
                 .build();
 
         given()
@@ -68,8 +79,9 @@ public class UserControllerTest extends TestBase {
                 .then()
                 .log().all()
                 .assertThat().statusCode(201);
-
     }
+
+
     @Test
     public void createNewUserNegativeTest() {
         UserDto existingUser = UserDto.builder()
@@ -107,7 +119,7 @@ public class UserControllerTest extends TestBase {
                 .extract()
                 .path("accessToken");
 
-        // Получение всех пользователей с использованием полученного токена
+        // Получение всех пользователей
         List<UserDto> allusers = given()
                 .header(AUTH, "Bearer " + token)
                 .when()
@@ -125,10 +137,26 @@ public class UserControllerTest extends TestBase {
     }
 
     @Test
-    public void deleteUserNegativeTest() {
+    public void deleteUserPositiveTest() {
+        UserDto user = UserDto.builder()
+                .firstName("John")
+                .lastName("Lennon")
+                .email("john@web.com")
+                .password("Berlin2024!")
+                .build();
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(user)
+                .when()
+                .post("/users/register")
+                .then()
+                .log().all()
+                .assertThat().statusCode(201);
+
 
         AuthRequestDto auth = AuthRequestDto.builder()
-                .email("ringo@web.com")
+                .email("John@web.com")
                 .password("Berlin2024!")
                 .build();
 
@@ -137,7 +165,7 @@ public class UserControllerTest extends TestBase {
                 .contentType(ContentType.JSON)
                 .post("/users/login")
                 .then()
-                .assertThat().statusCode(401)
+                .assertThat().statusCode(200)
                 .extract()
                 .path("accessToken");
 
@@ -147,7 +175,7 @@ public class UserControllerTest extends TestBase {
                 .delete("users/auth/me" )
                 .then()
                 .log().all()
-                .assertThat().statusCode(403)
+                .assertThat().statusCode(204)
                 .extract()
                 .response();
         String responseBody = response.getBody().asString();

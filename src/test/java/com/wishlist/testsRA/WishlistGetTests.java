@@ -5,12 +5,10 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-import static com.wishlist.testsRA.Helper.getAllWishLists;
+import static com.wishlist.testsRA.HelperForGetAllWishLists.getAllWishLists;
 import static io.restassured.RestAssured.given;
 
-public class GetWishlistTests extends TestBase {
+public class WishlistGetTests extends TestBase {
 
     @Test
     public void getWishlistsSuccessTestId1() {
