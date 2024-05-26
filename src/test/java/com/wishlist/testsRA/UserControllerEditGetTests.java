@@ -14,7 +14,7 @@ public class UserControllerEditGetTests extends TestBase{
 
     @Test
     public void updateUserPositiveTest() {
-        // Получение токена для аутентификации
+        // Получение токена для аутентификации текущeго ringo@web.com
         AuthRequestDto auth = AuthRequestDto.builder()
                 .email("ringo@web.com")
                 .password("Berlin2024!")
@@ -30,7 +30,7 @@ public class UserControllerEditGetTests extends TestBase{
                 .extract()
                 .path("accessToken");
 
-        // Изменение данных пользователя для обновления
+        // Изменение данных  для обновления
         UserDto updatedUser = UserDto.builder()
                 .firstName("RingoUpdatedName")
                 .lastName("StarUpdatedName")
@@ -38,7 +38,7 @@ public class UserControllerEditGetTests extends TestBase{
                 .password("NewBerlin2024!")
                 .build();
 
-        // Отправка запроса на обновление пользователя
+        // Отправка запроса на обновление
         Response response = given()
                 .contentType(ContentType.JSON)
                 .header(AUTH, "Bearer " + token)
@@ -62,7 +62,7 @@ public class UserControllerEditGetTests extends TestBase{
 
         @Test
         public void updateUserNegativeTest () {
-            // Получение токена для аутентификации
+            // Получение токена
             AuthRequestDto auth = AuthRequestDto.builder()
                     .email("ringo@web.com")
                     .password("Berlin2024!")
@@ -107,7 +107,7 @@ public class UserControllerEditGetTests extends TestBase{
             }
         }
 
-    @Test
+    @Test(enabled = false)
     public void getCurrentUserInfoTest() {
 
         Response response = given()

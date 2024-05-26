@@ -86,7 +86,7 @@ public class GiftControllerTests extends TestBase {
     }
     @Test
     public void getAllGiftsByWishlistIdTest() {
-        String wishlistId = "7";    //id;
+        String wishlistId = "31";    //id;
 
         given()
                 .header(AUTH, "Bearer " + TOKEN)
@@ -174,8 +174,8 @@ public class GiftControllerTests extends TestBase {
 
     @Test
     public void updateGiftByIdTest() {
-        String wishlistId = "29"; // есть wishlistId
-        String giftId = "19"; //  есть giftId для обновления
+        String wishlistId = "31"; // есть wishlistId
+        String giftId = "4"; //  есть giftId для обновления
 
         GiftDto updatedGiftDto = GiftDto.builder()
                 .title("Updated Parfum 200ml")
@@ -199,8 +199,8 @@ public class GiftControllerTests extends TestBase {
     }
     @Test
     public void updateGiftByIdNegativeTest() {
-        String wishlistId = "12345"; // Предположим, что у вас есть wishlistId
-        String giftId = "67890"; // Предположим, что у вас есть giftId для обновления
+        String wishlistId = "31"; //  есть wishlistId
+        String giftId = "67890"; //  есть giftId для обновления
 
         GiftDto updatedGiftDto = GiftDto.builder()
                 .title("Updated Gift")
@@ -217,7 +217,7 @@ public class GiftControllerTests extends TestBase {
                 .body(updatedGiftDto)
                 .contentType(ContentType.JSON)
                 .when()
-                .put("/api/gifts/" + giftId)
+                .put("/gifts/" + giftId)
                 .then()
                 .log().all()
                 .assertThat()
