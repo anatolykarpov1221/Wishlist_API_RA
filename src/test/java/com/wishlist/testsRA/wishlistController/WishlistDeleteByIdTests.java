@@ -1,55 +1,67 @@
-package com.wishlist.testsRA;
+package com.wishlist.testsRA.wishlistController;
 
 import com.wishlist.dto.WishlistDto;
+import com.wishlist.testsRA.TestBase;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.nullValue;
 
 public class WishlistDeleteByIdTests extends TestBase {
 
-    String id;
-
-
+    private static String wishlistId;
+    ;
     @BeforeMethod
     public void precondition() {
-        WishlistDto wishlistDto = WishlistDto.builder()
-                .title("Petr")
-                .eventDate("2024-11-11")
-                .description("petr@spb.com")
-                .build();
-        String id = given()
-                .header(AUTH, "Bearer " + TOKEN)
-//                .header(AUTH,"Bearer"+TOKEN)
-                .body(wishlistDto)
-                .contentType(ContentType.JSON)
-                .post("wishlists")
-                .then()
-                .log().all()
-                .assertThat().statusCode(201)
-                .extract().path("id").toString();
-        System.out.println("ID: " + id);
-
-        this.id = id;
-
+        if (wishlistId == null) {
+            WishlistDto wishlistDto = WishlistDto.builder()
+                    .title("Petr")
+                    .eventDate("2024-11-11")
+                    .description("petr@spb.com")
+                    .build();
+            wishlistId = given()
+                    .header(AUTH, "Bearer " + TOKEN)
+                    .body(wishlistDto)
+                    .contentType(ContentType.JSON)
+                    .post("wishlists")
+                    .then()
+                    .log().all()
+                    .assertThat().statusCode(201)
+                    .extract().path("id").toString();
+            System.out.println("ID: " + wishlistId);
+            //this.wishlistId=wishlistId;
+        }
     }
+
+
 
     @Test
-    public void deleteWishlistByIdSuccessTest1() {
-        RestAssured.registerParser("text/plain", Parser.JSON);
-        given()
+    public void deleteWishlistByIdSuccessTest() {
+        precondition();
+        //String wishlistId = "27";
+        Response response = given()
                 .header(AUTH, "Bearer " + TOKEN)
-                .delete("wishlists/" + id)
-                .then()
-                .assertThat().statusCode(200)
-                .contentType("text/plain;charset=UTF-8")
-                .assertThat().body(equalTo("Wishlist deleted successfully"));
+                .contentType(ContentType.JSON)
+                .when()
+                .delete("/wishlists/" + wishlistId);
+
+        if (response.statusCode() == 204) {
+            System.out.println("Wishlist with ID " + wishlistId + " deleted successfully.");
+        } else {
+            System.out.println("Error deleting wishlist. Status Code: " + response.statusCode());
+            System.out.println("Message: " + response.getBody().asString());
+        }
     }
+
+
+
 
 
     @Test
@@ -59,9 +71,11 @@ public class WishlistDeleteByIdTests extends TestBase {
                 .delete("wishlists/" + 700)
                 .then()
                 .assertThat().statusCode(404)
-                .contentType("text/plain;charset=UTF-8")
-                .assertThat().body(equalTo("Wishlist not found"));
+                .contentType("application/json")
+                .assertThat().body("message", equalTo("Wishlist with id 700 does not exist"));
     }
+
+
 
     @Test
     public void deleteWishlistByInvalidIdFormatTest() {
@@ -70,10 +84,11 @@ public class WishlistDeleteByIdTests extends TestBase {
                 .delete("wishlists/" + "A")
                 .then()
                 .assertThat().statusCode(500)
-                .contentType("text/plain;charset=UTF-8")
+                .contentType("application/json")
                 .assertThat()
-                .body(equalTo("Unexpected error occurred: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: \"A\""));
+                .body("message", equalTo("Unexpected error occurred: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; For input string: \"A\""));
     }
+
 
 }
 

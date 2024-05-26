@@ -1,6 +1,7 @@
-package com.wishlist.testsRA;
+package com.wishlist.testsRA.wishlistController;
 
 import com.wishlist.dto.WishlistDto;
+import com.wishlist.testsRA.TestBase;
 
 import java.util.List;
 

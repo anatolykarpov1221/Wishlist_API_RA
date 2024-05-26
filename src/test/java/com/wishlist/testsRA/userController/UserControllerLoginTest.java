@@ -1,7 +1,8 @@
-package com.wishlist.testsRA;
+package com.wishlist.testsRA.userController;
 
 import com.wishlist.dto.AuthRequestDto;
 import com.wishlist.dto.AuthResponseDto;
+import com.wishlist.testsRA.TestBase;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;

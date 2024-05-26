@@ -1,6 +1,7 @@
-package com.wishlist.testsRA;
+package com.wishlist.testsRA.userController;
 import com.wishlist.dto.AuthRequestDto;
 import com.wishlist.dto.UserDto;
+import com.wishlist.testsRA.TestBase;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 import io.restassured.response.Response;
@@ -65,10 +66,12 @@ public class UserControllerCreateDeleteTest extends TestBase {
         Random random = new Random();
         int randomNumber = random.nextInt(1000);
 
+        String password = "Secret123!";
         UserDto user = UserDto.builder()
                 .firstName("Ringo")
                 .lastName("Starr")
                 .email("ringo" + randomNumber + "@web.com")
+                .password(password)
                 .build();
 
         given()
@@ -80,6 +83,7 @@ public class UserControllerCreateDeleteTest extends TestBase {
                 .log().all()
                 .assertThat().statusCode(201);
     }
+
 
 
     @Test

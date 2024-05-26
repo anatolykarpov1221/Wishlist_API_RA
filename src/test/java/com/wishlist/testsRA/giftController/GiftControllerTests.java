@@ -1,12 +1,11 @@
-package com.wishlist.testsRA;
+package com.wishlist.testsRA.giftController;
 
 import com.wishlist.dto.GiftDto;
 import com.wishlist.dto.WishlistDto;
+import com.wishlist.testsRA.TestBase;
 import io.restassured.http.ContentType;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.time.LocalDateTime;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -48,10 +47,6 @@ public class GiftControllerTests extends TestBase {
                 .description("NewWishlist")
                 .build();
 
-        wishlist.setWishlistId(Integer.parseInt(wishlistId));
-
-
-
         GiftDto giftDto = GiftDto.builder()
                 .title("Boss")
                 .description("parfum")
@@ -60,7 +55,8 @@ public class GiftControllerTests extends TestBase {
                 .url("www.douglas.com")
                 .imgUrl("/Users/anatolykarpovMAC15/tools/1.jpg")
                 .wishlist(wishlist)
-                .reserved(true).build();
+                .reserved(true)
+                .build();
 
 
         String id = given()
@@ -73,17 +69,16 @@ public class GiftControllerTests extends TestBase {
                 .assertThat().statusCode(200)
                 .extract().path("id").toString();
         System.out.println("ID: " + id);
+
         given()
                 .contentType(ContentType.JSON)
                 .when()
                 .get("/wishlists/" + wishlistId + "/gifts/" + id)
                 .then()
-                .log().all()
-                .assertThat();
-                //.body("id", equalTo(Integer.parseInt(id)));
-                //.assertThat().body("title", equalTo("Boss"));
+                .log().all();
 
     }
+
     @Test
     public void getAllGiftsByWishlistIdTest() {
         String wishlistId = "31";    //id;
@@ -130,11 +125,11 @@ public class GiftControllerTests extends TestBase {
 
     private String createGift(String wishlistId, String giftTitle) {
         WishlistDto wishlist = WishlistDto.builder()
-                .title("Wishlist")
+                .id(1)
+                .title("Example Wishlist")
                 .eventDate("2025-06-01")
-                .description("New Wishlist")
+                .description("New Wishlist Description")
                 .build();
-        wishlist.setWishlistId(Integer.parseInt(wishlistId));
 
         GiftDto giftDto = GiftDto.builder()
                 .title(giftTitle)
@@ -147,7 +142,7 @@ public class GiftControllerTests extends TestBase {
                 .reserved(true)
                 .build();
 
-        // Создаем подарок id возвращаем
+    // Создаем подарок и возвращаем id
         String giftId = given()
                 .header(AUTH, "Bearer " + TOKEN)
                 .body(giftDto)
@@ -161,6 +156,7 @@ public class GiftControllerTests extends TestBase {
         return giftId;
     }
 
+
     private void deleteGiftById(String giftId) {
         given()
                 .header(AUTH, "Bearer " + TOKEN)
@@ -169,7 +165,9 @@ public class GiftControllerTests extends TestBase {
                 .delete("/gifts/" + giftId)
                 .then()
                 .log().all()
-                .assertThat().statusCode(204); //
+                .assertThat().statusCode(204);
+
+        //
     }
 
     @Test

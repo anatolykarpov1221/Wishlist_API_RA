@@ -5,21 +5,18 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-    @Getter
-    @Setter
-    @ToString
-    @Builder
-    public class ShareLinkDto {
-        private Integer id;
-        private String uuid;
-        private WishlistDto wishlist;
+@Getter
+@Setter
+@ToString
+@Builder
+public class ShareLinkDto {
+    private Integer id;
+    private String uuid;
+    private WishlistDto wishlist;
+}
 
-        public void setWishlist(WishlistDto wishlist) {
-            this.wishlist = wishlist;
-        }
-    }
 
-    //{
+//{
     //  "id": 0,
     //  "uuid": "string",
     //  "wishlist": {

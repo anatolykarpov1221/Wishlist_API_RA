@@ -1,16 +1,17 @@
-package com.wishlist.testsRA;
+package com.wishlist.testsRA.userController;
 
 import com.wishlist.dto.AuthRequestDto;
 import com.wishlist.dto.UserDto;
+import com.wishlist.testsRA.TestBase;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-public class UserControllerEditGetTests extends TestBase{
+
+public class UserControllerEditGetTests extends TestBase {
 
     @Test
     public void updateUserPositiveTest() {

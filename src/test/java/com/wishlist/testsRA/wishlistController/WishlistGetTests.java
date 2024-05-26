@@ -1,11 +1,12 @@
-package com.wishlist.testsRA;
+package com.wishlist.testsRA.wishlistController;
 
 import com.wishlist.dto.WishlistDto;
+import com.wishlist.testsRA.TestBase;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static com.wishlist.testsRA.HelperForGetAllWishLists.getAllWishLists;
+import static com.wishlist.testsRA.wishlistController.HelperForGetAllWishLists.getAllWishLists;
 import static io.restassured.RestAssured.given;
 
 public class WishlistGetTests extends TestBase {

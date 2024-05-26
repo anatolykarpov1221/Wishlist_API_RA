@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,11 +17,11 @@ public class WishlistDto {
     private String title;
     private String  eventDate;
     private String description;
-    private Integer wishlistId; // Добавлено
+    private List<GiftDto> gifts; // Добавлено
 
-    public void setWishlistId(Integer wishlistId) {
-        this.wishlistId = wishlistId;
-    }
+//    public void setWishlistId(Integer wishlistId) {
+//        this.wishlistId = wishlistId;
+//    }
 }
 
 
@@ -52,5 +53,31 @@ public class WishlistDto {
 //            gifts = new ArrayList<>();
 //        }
 //        gifts.add(gift);
+//
+//import lombok.Builder;
+//import lombok.Data;
+//
+//import java.util.List;
+//
+//@Data
+//@Builder
+//public class WishlistDto {
+//    private Long id;
+//    private String title;
+//    private String description;
+//    private String eventDate;
+//    private List<Gift> gifts;
+//
+//    @Data
+//    @Builder
+//    public static class Gift {
+//        private Long id;
+//        private String title;
+//        private String description;
+//        private double price;
+//        private String currency;
+//        private String url;
+//        private String imgUrl;
+//        private boolean reserved;
 //    }
 //}

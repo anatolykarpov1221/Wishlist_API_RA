@@ -1,5 +1,6 @@
-package com.wishlist.testsRA;
+package com.wishlist.testsRA.wishlistController;
 import com.wishlist.dto.WishlistDto;
+import com.wishlist.testsRA.TestBase;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
